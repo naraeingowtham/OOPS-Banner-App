@@ -8,7 +8,7 @@ public class OOPSBannerApp {
 
         // print row by row
         for (int i = 0; i < o.length; i++) {
-            System.out.println(o[i] + "  " + o[i] + "  " + p[i] + "  " + s[i]);
+            System.out.println(o[i] + "  " + p[i] + "  " + s[i]);
         }
     }
 
