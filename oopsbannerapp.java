@@ -1,50 +1,70 @@
-public class OOPSBannerApp {
+import java.util.HashMap;
+import java.util.Map;
 
-    public static void main(String[] args) {
+public class oopsbannerapp {
 
-        String[] o = getO();
-        String[] p = getP();
-        String[] s = getS();
+    // Method to build and return pattern map
+    private static Map<Character, String[]> buildPatternMap() {
 
-        // print row by row
-        for (int i = 0; i < o.length; i++) {
-            System.out.println(o[i] + "  " + p[i] + "  " + s[i]);
+        Map<Character, String[]> patternMap = new HashMap<>();
+
+        patternMap.put('O', new String[]{
+                " *** ",
+                "*   *",
+                "*   *",
+                "*   *",
+                " *** "
+        });
+
+        patternMap.put('P', new String[]{
+                "**** ",
+                "*   *",
+                "**** ",
+                "*    ",
+                "*    "
+        });
+
+        patternMap.put('S', new String[]{
+                " ****",
+                "*    ",
+                " *** ",
+                "    *",
+                "**** "
+        });
+
+        return patternMap;
+    }
+
+    // Function to render banner
+    private static void renderBanner(String word, Map<Character, String[]> patternMap) {
+
+        int height = 5;
+
+        for (int row = 0; row < height; row++) {
+
+            StringBuilder line = new StringBuilder();
+
+            for (char ch : word.toCharArray()) {
+
+                String[] pattern = patternMap.get(ch);
+
+                if (pattern != null) {
+                    line.append(pattern[row]).append("  ");
+                } else {
+                    line.append("     ").append("  ");
+                }
+            }
+
+            System.out.println(line);
         }
     }
 
-    static String[] getO() {
-        return new String[]{
-                " ***** ",
-                "*     *",
-                "*     *",
-                "*     *",
-                "*     *",
-                "*     *",
-                " ***** "
-        };
-    }
+    public static void main(String[] args) {
 
-    static String[] getP() {
-        return new String[]{
-                " ***** ",
-                "*     *",
-                "*     *",
-                " ***** ",
-                "*      ",
-                "*      ",
-                "*      "
-        };
-    }
+        Map<Character, String[]> patternMap = buildPatternMap();
 
-    static String[] getS() {
-        return new String[]{
-                " ***** ",
-                "*      ",
-                "*      ",
-                " ***** ",
-                "      *",
-                "      *",
-                " ***** "
-        };
+        String word = "OOPS";
+
+        renderBanner(word, patternMap);
     }
 }
