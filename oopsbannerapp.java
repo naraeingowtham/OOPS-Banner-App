@@ -1,50 +1,74 @@
-public class OOPSBannerApp {
+public class oopsbannerapp {
 
-    public static void main(String[] args) {
+    
+    static class CharacterPatternMap {
 
-        String[] o = getO();
-        String[] p = getP();
-        String[] s = getS();
+        private char character;
+        private String[] pattern;
 
-        // print row by row
-        for (int i = 0; i < o.length; i++) {
-            System.out.println(o[i] + "  " + p[i] + "  " + s[i]);
+     
+        public CharacterPatternMap(char character, String[] pattern) {
+            this.character = character;
+            this.pattern = pattern;
+        }
+
+       
+        public char getCharacter() {
+            return character;
+        }
+
+        public String[] getPattern() {
+            return pattern;
         }
     }
 
-    static String[] getO() {
-        return new String[]{
-                " ***** ",
-                "*     *",
-                "*     *",
-                "*     *",
-                "*     *",
-                "*     *",
-                " ***** "
-        };
-    }
+    public static void main(String[] args) {
 
-    static String[] getP() {
-        return new String[]{
-                " ***** ",
-                "*     *",
-                "*     *",
-                " ***** ",
-                "*      ",
-                "*      ",
-                "*      "
-        };
-    }
+      
+        CharacterPatternMap[] bannerMap = {
 
-    static String[] getS() {
-        return new String[]{
-                " ***** ",
-                "*      ",
-                "*      ",
-                " ***** ",
-                "      *",
-                "      *",
-                " ***** "
+            new CharacterPatternMap('O', new String[]{
+                " *** ",
+                "*   *",
+                "*   *",
+                "*   *",
+                " *** "
+            }),
+
+            new CharacterPatternMap('P', new String[]{
+                "**** ",
+                "*   *",
+                "**** ",
+                "*    ",
+                "*    "
+            }),
+
+            new CharacterPatternMap('S', new String[]{
+                " ****",
+                "*    ",
+                " *** ",
+                "    *",
+                "**** "
+            })
         };
+
+        String word = "OOPS";
+
+      
+        for (int row = 0; row < 5; row++) {
+
+            StringBuilder line = new StringBuilder();
+
+            for (char ch : word.toCharArray()) {
+
+                for (CharacterPatternMap map : bannerMap) {
+                    if (map.getCharacter() == ch) {
+                        line.append(map.getPattern()[row]).append("  ");
+                    }
+                }
+            }
+
+            System.out.println(line);
+        }
     }
 }
